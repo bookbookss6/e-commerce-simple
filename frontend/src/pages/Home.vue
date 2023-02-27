@@ -13,14 +13,15 @@
 </template>
 <script setup>
 import Card from '../components/Card.vue';
-import axios from "axios";
 import { reactive } from 'vue';
+import axios_backend from '@/scripts/axios_backend';
 
 const state = reactive({
   items:[]
 });
 
-axios.get("/api/items")
+axios_backend.get("/api/items")
+
     .then(({data})=>{
       state.items = data;
     });

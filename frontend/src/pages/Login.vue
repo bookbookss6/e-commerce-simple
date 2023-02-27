@@ -27,9 +27,9 @@
 </template>
 <script setup>
 import router from '@/scripts/router';
-import axios from 'axios';
 import { reactive } from 'vue';
 import store from '../scripts/store';
+import axios_backend from '@/scripts/axios_backend';
 
 const state = reactive({
     form:{
@@ -39,7 +39,7 @@ const state = reactive({
 });
 
 const submit = () =>{
-  axios.post("/api/account/login" ,state.form)
+  axios_backend.post("/api/account/login" ,state.form)
       .then(({data})=>{
           store.commit('setAccount',data);
           sessionStorage.setItem("id",data);

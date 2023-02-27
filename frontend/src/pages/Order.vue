@@ -118,10 +118,10 @@
   </div>
 </template>
 <script setup>
-import axios from "axios";
 import { reactive, computed } from "vue";
 import { numberWithCommas } from "@/scripts/numberWithCommas";
 import router from "@/scripts/router";
+import axios_backend from "@/scripts/axios_backend";
 
 const state = reactive({
   items: [],
@@ -134,7 +134,7 @@ const state = reactive({
   },
 });
 const load = () => {
-  axios.get("/api/cart/items").then(({ data }) => {
+  axios_backend.get("/api/cart/items").then(({ data }) => {
     console.log(data);
     state.items = data;
   });
@@ -142,9 +142,11 @@ const load = () => {
 const submit = () => {
   const args = JSON.parse(JSON.stringify(state.form));
   args.items = JSON.stringify(state.items);
-  axios.post("/api/orders", args).then(() => {
+  axios_backend.post("/api/orders", args).then(() => {
     alert("주문 완료하였습니다.");
     router.push({ path: "/orders" });
+  }).catch((reason)=>{
+      alert(`주문 정보란을 채우세요.`);
   });
 };
 const totalPrice = computed(() => {

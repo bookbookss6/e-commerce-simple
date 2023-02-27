@@ -25,10 +25,10 @@
   </div>
 </template>
 <script setup>
-import axios from 'axios';
 import { defineProps } from 'vue';
 import {numberWithCommas} from '../scripts/numberWithCommas';
 import store from '@/scripts/store';
+import axios_backend from '@/scripts/axios_backend';
 
 const props = defineProps({
   item: String
@@ -37,8 +37,7 @@ const props = defineProps({
 const addToCart = (itemId) =>{
   if(store.state.account.id)
   {
-
-    axios.post(`/api/cart/items/${itemId}`)
+    axios_backend.post(`/api/cart/items/${itemId}`)
       .then(()=>{
         alert("장바구니에 추가되었습니다.");
       });

@@ -28,13 +28,13 @@
 </template>
 
 <script setup>
+import axios_backend from "@/scripts/axios_backend";
 import { reactive } from "vue";
-import axios from "axios";
 
 const state = reactive({
   orders: [],
 });
-axios.get("/api/orders").then(({ data }) => {
+axios_backend.get("/api/orders").then(({ data }) => {
   state.orders = [];
   for (let d of data) {
     if (d.items) {

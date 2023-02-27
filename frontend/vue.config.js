@@ -1,14 +1,5 @@
 module.exports = {
   devServer: {
-      proxy: {
-          '/api': {
-              target: 'http://localhost:8080',
-              changeOrigin: true,
-              pathRewrite: {
-                  '^/': ''
-              }
-          }
-      }
-  }
-}
-
+    proxy: 'http://api.e-commerce-web-book66.link'
+    }
+  };

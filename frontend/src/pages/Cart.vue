@@ -14,7 +14,7 @@
   </div>
 </template>
 <script setup>
-import axios from 'axios';
+import axios_backend from '@/scripts/axios_backend';
 import { reactive } from 'vue';
 import { numberWithCommas } from '../scripts/numberWithCommas';
 
@@ -23,7 +23,7 @@ const state = reactive({
 });
 
 const load = () =>{
-  axios.get("/api/cart/items")
+  axios_backend.get("/api/cart/items")
   .then(({data})=>{
     console.log(data);
     state.items = data;
@@ -31,7 +31,7 @@ const load = () =>{
 }
 
 const remove = (itemId) =>{
-  axios.delete(`/api/cart/items/${itemId}`).then(()=>{
+  axios_backend.delete(`/api/cart/items/${itemId}`).then(()=>{
     load();
   })
 }

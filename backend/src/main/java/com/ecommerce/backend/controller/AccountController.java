@@ -17,7 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Map;
 
 @RestController
-public class AccountController {
+public class AccountController{
 
     @Autowired
     private MemberRepository memberRepository;
@@ -39,7 +39,7 @@ public class AccountController {
             Cookie cookie = new Cookie("token",token);
             cookie.setHttpOnly(true);
             cookie.setPath("/");
-
+            cookie.setSecure(true);
             res.addCookie(cookie);
 
             return new ResponseEntity<>(id,HttpStatus.OK);
@@ -62,6 +62,7 @@ public class AccountController {
     @GetMapping("/api/account/check")
     public ResponseEntity check(@CookieValue(value = "token", required = false)String token)
     {
+        System.out.println("request token:"+token);
         Claims claims = jwtService.getClaims(token);
 
         if(claims!=null)
@@ -77,11 +78,12 @@ public class AccountController {
     public ResponseEntity logout(HttpServletResponse res) {
         Cookie cookie = new Cookie("token", null);
         cookie.setPath("/");
-        cookie.setMaxAge(0);
-
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
         res.addCookie(cookie);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
 }
+

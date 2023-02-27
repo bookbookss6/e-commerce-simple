@@ -9,13 +9,13 @@
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import store from "./scripts/store";
-import axios from "axios";
 import { useRoute } from "vue-router";
 import { watch } from "vue";
+import axios_backend from "./scripts/axios_backend";
 
 
 const check = () =>{
-  axios.get("/api/account/check").then(({data})=>{
+  axios_backend.get("/api/account/check").then(({data})=>{
     console.log(data);
 
     if(data){

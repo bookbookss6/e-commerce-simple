@@ -66,11 +66,11 @@
 <script setup>
 import store from '../scripts/store';
 import router from '../scripts/router';
-import axios from 'axios';
+import axios_backend from '@/scripts/axios_backend';
 
 const logout = ()=>{
   store.commit('setAccount',0);
-  axios.post("/api/account/logout")
+  axios_backend.post("/api/account/logout")
     .then(()=>{
       alert("로그아웃됨.");
     })

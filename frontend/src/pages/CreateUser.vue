@@ -24,8 +24,8 @@
 </template>
 
 <script setup>
+import axios_backend from '@/scripts/axios_backend';
 import router from '@/scripts/router';
-import axios from 'axios';
 import { reactive } from 'vue';
 
 const user = reactive({
@@ -36,7 +36,7 @@ const user = reactive({
 const submit = ()=>{
     
 
-axios.post("/api/account/create-user",user).
+axios_backend.post("/api/account/create-user",user).
     then(()=>{
         alert('계정 생성완료.')
         router.push({path:"/"})
