@@ -8,7 +8,7 @@
 
 라이브러리 : Jwt.IO , Bootstrap , Axios
 
-웹 호스팅 : Aws
+웹 호스팅 : Aws (amazon web services)
 
 사용했습니다.
 
